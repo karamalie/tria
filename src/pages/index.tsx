@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Login from "@/components/Login";
 import { MetaMaskProvider } from "@metamask/sdk-react";
 import { RecoilRoot } from "recoil";
+import Wallet from "@/components/Wallet";
 
 const inter = Inter({ subsets: ["latin"] });
 
