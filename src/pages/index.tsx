@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Login from "@/components/Login";
 import { MetaMaskProvider } from "@metamask/sdk-react";
+import { RecoilRoot } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,11 @@ export default function Home() {
 
   return (
     <main>
-      <MetaMaskProvider debug={true} sdkOptions={sdkOptions}>
-        <Login></Login>
-      </MetaMaskProvider>
+      <RecoilRoot>
+        <MetaMaskProvider debug={true} sdkOptions={sdkOptions}>
+          <Login></Login>
+        </MetaMaskProvider>
+      </RecoilRoot>
     </main>
   );
 }
