@@ -12,6 +12,20 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "purple-gradient": "linear-gradient(111deg, #9F8BFF 0%, #7053FF 100%)",
+      },
+
+      colors: {
+        "color-secondary": "#FAFAFAB2",
+        "color-tertiary": "#FAFAFA4D",
+        "border-gray": "rgba(128, 128, 128, 0.05)",
+        "color-surface": "#333331",
+      },
+      backgroundColor: {
+        "surface-black": "#101010",
+      },
+      boxShadow: {
+        custom: "0 3px 3px 3px rgba(128, 128, 128, 0.4)",
       },
     },
   },
