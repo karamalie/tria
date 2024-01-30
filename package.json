@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dotlottie/react-player": "^1.6.15",
     "@metamask/sdk-react": "^0.14.2",
     "@types/react-transition-group": "^4.4.10",
     "next": "14.1.0",

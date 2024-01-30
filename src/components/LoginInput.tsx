@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const LoginInput = () => {
   const [username, setUsername] = useState("");
@@ -92,8 +92,8 @@ const LoginInput = () => {
           ></video>
         </div>
         <div>
-          Your @tria is like Gmail, for Web3. Pay, receive and log-in to apps on
-          any device, and blockchain.
+          Your <strong>@tria</strong> is like Gmail, for Web3. Pay, receive and
+          log-in to apps on any device, and blockchain.
         </div>
       </div>
     </div>

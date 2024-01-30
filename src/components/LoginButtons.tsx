@@ -54,6 +54,12 @@ const LoginButtons = () => {
           </div>
           Continue with X
         </button>
+        <button className="w-full flex items-center justify-left px-3 py-1.5 border border-transparent rounded-xl text-white bg-color-surface">
+          <div className="rounded-full bg-white w-8 h-8 mr-2 flex items-center justify-center">
+            <img src="/twitter.svg" height={20} width={20}></img>
+          </div>
+          Continue with X
+        </button>
       </div>
       <div className="relative z-10 flex items-center justify-between my-4">
         <span className="w-1/2 border-b border-gray-600"></span>
@@ -77,9 +83,6 @@ const LoginButtons = () => {
           </div>
           WalletConnect
         </button>
-      </div>
-      <div className="relative z-10 mt-4 text-center">
-        <p className="text-gray-400 text-xs">Powered by Tria</p>
       </div>
     </div>
   );
