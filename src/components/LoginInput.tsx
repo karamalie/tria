@@ -26,7 +26,7 @@ const LoginInput = () => {
   };
 
   return (
-    <div className="z-10 relative bg-neutral-900 p-4 rounded-xl">
+    <div className="z-10 relative bg-surface-dark p-4 rounded-xl">
       <div className="pb-4">
         <h1 className="text-color-secondary text-xl">Create your tria name</h1>
       </div>
@@ -79,7 +79,7 @@ const LoginInput = () => {
           </div>
         </div>
       </div>
-      <div className="bg-neutral-700 bg-opacity-20 z-10 mt-4 text-xs text-gray-400 flex items-center border border-neutral-700 rounded-xl px-4 py-2">
+      <div className="bg-surface-dark bg-opacity-20 z-10 mt-4 text-xs text-gray-400 flex items-center border border-neutral-700 rounded-xl px-4 py-2">
         <div
           style={{ width: "32px", height: "32px" }}
           className="flex items-center mr-4"

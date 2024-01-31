@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"; // Ensure these are installed and imported correctly
 import { ScrollArea } from "@radix-ui/themes";
 import NavigationBar from "./NavigationBar";
-import { WalletAtom } from "@/recoil";
+import { AccountsAtom, WalletAtom } from "@/recoil";
 import { useRecoilState } from "recoil";
+import Web3 from "web3";
 
 interface CryptoAsset {
   symbol: string;
@@ -12,8 +13,9 @@ interface CryptoAsset {
 }
 
 const CryptoWallet: React.FC = () => {
+  const [accounts, setAccounts] = useRecoilState(AccountsAtom);
   const [walletOpen, setWalletOpen] = useRecoilState(WalletAtom); // This should be fetched from your backend or crypto wallet service
-  //   const [isExpanded, setIsExpanded] = useState(true);
+  const [ethBalance, setEthBalance] = useState<string>("");
   const [isMinimized, setIsMinimized] = useState(false);
   const [assets] = useState<CryptoAsset[]>([
     // This should be fetched from your backend or crypto wallet service
@@ -33,8 +35,47 @@ const CryptoWallet: React.FC = () => {
   const toggleExpand = () => {
     setWalletOpen(!walletOpen);
   };
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (accounts && accounts.length > 0) {
+        const balance = await getAccountBalance();
+        console.log("balance", balance);
+        setEthBalance(balance);
+      }
+    };
+
+    fetchBalance();
+  }, [accounts]);
+
+  const getAccountBalance = async (): Promise<string> => {
+    // Check if MetaMask is installed
+    if (typeof window.ethereum !== "undefined") {
+      const web3 = new Web3(window.ethereum);
+
+      try {
+        // Request account access
+        await window.ethereum.enable();
+
+        // Get the first account
+        const accounts = await web3.eth.getAccounts();
+        const account = accounts[0];
+
+        // Get the balance
+        const balanceWei = await web3.eth.getBalance(account);
+        return web3.utils.fromWei(balanceWei, "ether");
+      } catch (error: any) {
+        console.error(`An error occurred: ${error.message}`);
+        throw error;
+      }
+    } else {
+      console.log("MetaMask is not installed!");
+      throw new Error("MetaMask is not installed");
+    }
+  };
+
   return (
-    <div className="fixed bottom-0 right-0 max-w-xs w-full text-white rounded-lg shadow-lg overflow-hidden z-50">
+    <div className="fixed bottom-0 mb-2 mr-2 right-0 max-w-xs w-full text-white rounded-lg shadow-lg overflow-hidden z-50">
       <div className="relative flex justify-center">
         <button className="cursor-pointer relative" onClick={toggleExpand}>
           <img
@@ -53,7 +94,9 @@ const CryptoWallet: React.FC = () => {
         </button>
       </div>
       <div
-        className="w-full bg-surface-black border border-neutral-800 text-white rounded-lg shadow-lg overflow-hidden z-50 transition-all duration-300"
+        className={`${
+          !walletOpen ? "" : "border-t border-r border-l border-neutral-800"
+        } w-full bg-surface-black  text-white rounded-t-lg shadow-lg overflow-hidden z-50 transition-all duration-300`}
         style={{ maxHeight: maxHeight }}
       >
         {/* {!isExpanded && ( */}
@@ -101,7 +144,7 @@ const CryptoWallet: React.FC = () => {
             >
               <img
                 src="/card-bg.svg"
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                className="absolute top-0 left-0 w-full h-full object-cover rounded-t-lg"
                 style={{ zIndex: -1 }}
               ></img>
               <div className="flex space-x-2 mb-1 z-20">
@@ -171,7 +214,16 @@ const CryptoWallet: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* )} */}
+      </div>
+      <div
+        className={`${
+          !walletOpen
+            ? "border border-neutral-800 rounded-lg"
+            : " border border-b border-neutral-800 rounded-b-lg"
+        } bg-surface-black flex w-auto justify-center space-x-2 py-2 `}
+      >
+        <img src="/mini-logo.svg" height={14} width={14}></img>
+        <p className="text-gray-400 text-xs">Powered by Tria</p>
       </div>
     </div>
   );

@@ -25,10 +25,13 @@ const config: Config = {
         "color-surface": "#333331",
         "surface-black": "#101010",
         "surface-purple": "#433FE5",
+        "surface-gray": "#53779B",
       },
       backgroundColor: {
         "surface-black": "#101010",
         "surface-purple": "#433FE5",
+        "surface-dark": "#1A1A1A",
+        "surface-gray": "#53779B",
       },
       boxShadow: {
         custom: "0 3px 3px 3px rgba(128, 128, 128, 0.4)",

@@ -9,3 +9,8 @@ export const WalletAtom = atom<boolean>({
   key: "isWalletOpen",
   default: false,
 });
+
+export const AccountsAtom = atom<string[]>({
+  key: "accounts",
+  default: [],
+});
