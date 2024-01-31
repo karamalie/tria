@@ -173,12 +173,14 @@ const LoginPage = () => {
             </div>
           )}
           {connected && <LoggedIn />}
-          <div className="absolute bottom-6 left-0 right-0 mx-auto z-10 text-center">
-            <div className="flex w-auto justify-center space-x-2">
-              <img src="/mini-logo.svg" height={14} width={14}></img>
-              <p className="text-gray-400 text-xs">Powered by Tria</p>
+          {!connected && (
+            <div className="absolute bottom-6 left-0 right-0 mx-auto z-10 text-center">
+              <div className="flex w-auto justify-center space-x-2">
+                <img src="/mini-logo.svg" height={14} width={14}></img>
+                <p className="text-gray-400 text-xs">Powered by Tria</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* {loginState === "authenticated" && <LoginButtons />} */}

@@ -75,8 +75,8 @@ const CryptoWallet: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-0 mb-2 mr-2 right-0 max-w-xs w-full text-white rounded-lg shadow-lg overflow-hidden z-50">
-      <div className="relative flex justify-center">
+    <div className="fixed bottom-0 w-full  sm:mb-2 sm:mr-2 right-0 sm:max-w-xs w-full text-white rounded-lg shadow-lg overflow-hidden z-50">
+      <div className="relative flex justify-center translate-nav">
         <button className="cursor-pointer relative" onClick={toggleExpand}>
           <img
             src="togglewallet.svg"

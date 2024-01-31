@@ -47,14 +47,14 @@ const LoginButtons = ({ connect }: LoginButtonsProps) => {
         <button
           onClick={connect}
           disabled={connecting}
-          className="hover:bg-neutral-900 w-full flex items-center px-4 py-2 rounded-lg border border-neutral-700 text-white"
+          className="hover:bg-neutral-900 w-full flex items-center justify-center px-4 py-2 rounded-lg border border-neutral-700 text-white"
         >
           <div className="flex justify-center mr-2 items-center">
             <img src="/metamask.png" height={20} width={20}></img>
           </div>
           Metamask
         </button>
-        <button className="hover:bg-neutral-900 w-full px-4 py-2 flex items-center rounded-lg border border-neutral-700 text-white">
+        <button className="hover:bg-neutral-900 w-full px-4 py-2 flex justify-center items-center rounded-lg border border-neutral-700 text-white">
           <div className="flex justify-center mr-2 items-center">
             <img src="/walletconnect.png" height={20} width={20}></img>
           </div>
