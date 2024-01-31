@@ -15,6 +15,7 @@ const config: Config = {
         "purple-gradient": "linear-gradient(111deg, #9F8BFF 0%, #7053FF 100%)",
         "dark-purple-gradient":
           "linear-gradient(111deg, #9F8BFF 0%, #5031C1 100%)",
+        "blue-gradient": "linear-gradient(160deg, #101010 40%, #433FE5 100%)",
       },
 
       colors: {
@@ -22,9 +23,12 @@ const config: Config = {
         "color-tertiary": "#FAFAFA4D",
         "border-gray": "rgba(128, 128, 128, 0.05)",
         "color-surface": "#333331",
+        "surface-black": "#101010",
+        "surface-purple": "#433FE5",
       },
       backgroundColor: {
         "surface-black": "#101010",
+        "surface-purple": "#433FE5",
       },
       boxShadow: {
         custom: "0 3px 3px 3px rgba(128, 128, 128, 0.4)",

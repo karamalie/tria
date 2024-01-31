@@ -11,6 +11,8 @@ const DotLottiePlayer = dynamic(
 );
 import "@dotlottie/react-player/dist/index.css";
 import dynamic from "next/dynamic";
+import LoggedIn from "./LoggedIn";
+import CryptoWallet from "./Wallet";
 const duration = 150;
 
 const defaultStyle = {
@@ -131,33 +133,35 @@ const LoginPage = () => {
               Login to <strong>tria</strong> Demo
             </h1>
           </div>
-
-          <div className="pb-6">
-            <Transition
-              in={loginState === "login"}
-              timeout={duration}
-              mountOnEnter
-              unmountOnExit
-            >
-              {(state) => (
-                <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                  <LoginButtons />
-                </div>
-              )}
-            </Transition>
-            <Transition
-              in={loginState === "input"}
-              timeout={duration}
-              mountOnEnter
-              unmountOnExit
-            >
-              {(state) => (
-                <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
-                  <LoginInput />
-                </div>
-              )}
-            </Transition>
-          </div>
+          {!connected && (
+            <div className="pb-6">
+              <Transition
+                in={loginState === "login"}
+                timeout={duration}
+                mountOnEnter
+                unmountOnExit
+              >
+                {(state) => (
+                  <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
+                    <LoginButtons />
+                  </div>
+                )}
+              </Transition>
+              <Transition
+                in={loginState === "input"}
+                timeout={duration}
+                mountOnEnter
+                unmountOnExit
+              >
+                {(state) => (
+                  <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
+                    <LoginInput />
+                  </div>
+                )}
+              </Transition>
+            </div>
+          )}
+          {connected && <LoggedIn />}
           <div className="absolute bottom-6 left-0 right-0 mx-auto z-10 text-center">
             <div className="flex w-auto justify-center space-x-2">
               <img src="/mini-logo.svg" height={14} width={14}></img>
@@ -168,6 +172,7 @@ const LoginPage = () => {
 
         {/* {loginState === "authenticated" && <LoginButtons />} */}
       </div>
+      {connected && <CryptoWallet></CryptoWallet>}
     </div>
   );
 };

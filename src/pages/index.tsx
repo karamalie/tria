@@ -1,9 +1,13 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Login from "@/components/Login";
-import { MetaMaskProvider } from "@metamask/sdk-react";
+import { MetaMaskProvider, useSDK } from "@metamask/sdk-react";
 import { RecoilRoot } from "recoil";
-import Wallet from "@/components/Wallet";
+
+import CryptoWallet from "@/components/Wallet";
+
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +28,9 @@ export default function Home() {
     <main>
       <RecoilRoot>
         <MetaMaskProvider debug={true} sdkOptions={sdkOptions}>
-          <Login></Login>
+          <Theme appearance="dark">
+            <Login></Login>
+          </Theme>
         </MetaMaskProvider>
       </RecoilRoot>
     </main>
