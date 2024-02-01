@@ -30,7 +30,7 @@ const transitionStyles = {
 
 const LoginPage = () => {
   const [loginState, setLoginState] = useRecoilState(LoginAtom);
-  const { sdk, connected } = useSDK();
+  const { sdk, connected, connecting } = useSDK();
   const [, setAccounts] = useRecoilState(AccountsAtom);
   const back = () => {
     setLoginState("login");
@@ -76,6 +76,8 @@ const LoginPage = () => {
       console.warn(`failed to connect..`, err);
     }
   };
+
+  if (connecting) return <div></div>;
 
   return (
     <div className="flex items-center justify-center min-h-screen  px-4 sm:px-6 lg:px-8 ">
