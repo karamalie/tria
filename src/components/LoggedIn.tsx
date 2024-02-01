@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { useSDK, MetaMaskProvider } from "@metamask/sdk-react";
 import { useRecoilState } from "recoil";
-import { LoginAtom, WalletAtom } from "@/recoil";
+import { EthBalanceAtom, LoginAtom, WalletAtom } from "@/recoil";
 
 const LoggedIn = () => {
   const [, setWalletOpen] = useRecoilState(WalletAtom);
+  const [ethBalance] = useRecoilState(EthBalanceAtom);
   const { sdk } = useSDK();
 
   const disconnect = () => {
@@ -39,6 +40,7 @@ const LoggedIn = () => {
           Toggle wallet
         </button>
       </div>
+      {ethBalance.length > 0 && <div>Your ETH Balance is : {ethBalance} </div>}
     </div>
   );
 };

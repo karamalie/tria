@@ -14,3 +14,7 @@ export const AccountsAtom = atom<string[]>({
   key: "accounts",
   default: [],
 });
+export const EthBalanceAtom = atom<string>({
+  key: "ethBalance",
+  default: "",
+});

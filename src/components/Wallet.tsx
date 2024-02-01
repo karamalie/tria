@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"; // Ensure these are installed and imported correctly
 import { ScrollArea } from "@radix-ui/themes";
 import NavigationBar from "./NavigationBar";
-import { AccountsAtom, WalletAtom } from "@/recoil";
+import { AccountsAtom, EthBalanceAtom, WalletAtom } from "@/recoil";
 import { useRecoilState } from "recoil";
 import Web3 from "web3";
 
@@ -15,7 +15,7 @@ interface CryptoAsset {
 const CryptoWallet: React.FC = () => {
   const [accounts, setAccounts] = useRecoilState(AccountsAtom);
   const [walletOpen, setWalletOpen] = useRecoilState(WalletAtom); // This should be fetched from your backend or crypto wallet service
-  const [ethBalance, setEthBalance] = useState<string>("");
+  const [ethBalance, setEthBalance] = useRecoilState(EthBalanceAtom);
   const [isMinimized, setIsMinimized] = useState(false);
   const [assets] = useState<CryptoAsset[]>([
     // This should be fetched from your backend or crypto wallet service
