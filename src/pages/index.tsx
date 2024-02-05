@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Login from "@/components/Login";
-import { MetaMaskProvider, useSDK } from "@metamask/sdk-react";
+import { MetaMaskProvider } from "@metamask/sdk-react";
 import { RecoilRoot } from "recoil";
 
 import CryptoWallet from "@/components/Wallet";
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const host =
     typeof window !== "undefined" ? window.location.href : "defaultHost";
-  const { sdk } = useSDK();
+
   const sdkOptions = {
     logging: { developerMode: true },
     checkInstallationImmediately: false,

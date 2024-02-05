@@ -73,14 +73,66 @@ const LoginPage = () => {
       console.log("connecting");
       sdk
         ?.connect()
-        .then((res) => console.log(res))
+        .then((res) => console.log(setAccounts(res as string[])))
         .catch((err) => console.log(err));
       // console.log(accounts);
-      // setAccounts(accounts);
+      //
     } catch (err) {
       console.warn(`failed to connect..`, err);
     }
   };
+
+  useEffect(() => {
+    if (!sdk) {
+      return;
+    }
+    console.log("test");
+    const onChainChanged = (chain: unknown) => {
+      console.log(`App::useEfect on 'chainChanged'`, chain);
+    };
+
+    const onInitialized = () => {
+      console.debug(`App::useEffect on _initialized`);
+    };
+
+    const onAccountsChanged = (accounts: unknown) => {
+      console.log(`App::useEfect on 'accountsChanged'`, accounts);
+    };
+
+    const onConnect = (_connectInfo: any) => {
+      console.log(`App::useEfect on 'connect'`, _connectInfo);
+    };
+
+    const onDisconnect = (error: unknown) => {
+      console.log(`App::useEfect on 'disconnect'`, error);
+    };
+
+    const onServiceStatus = (_serviceStatus: ServiceStatus) => {
+      console.debug(`sdk connection_status`, _serviceStatus);
+    };
+
+    window.ethereum?.on("chainChanged", onChainChanged);
+
+    window.ethereum?.on("_initialized", onInitialized);
+
+    window.ethereum?.on("accountsChanged", onAccountsChanged);
+
+    window.ethereum?.on("connect", onConnect);
+
+    window.ethereum?.on("disconnect", onDisconnect);
+
+    sdk.on(EventType.SERVICE_STATUS, onServiceStatus);
+
+    return () => {
+      console.debug(`App::useEffect cleanup activeprovider events`);
+      window.ethereum?.removeListener("chainChanged", onChainChanged);
+      window.ethereum?.removeListener("_initialized", onInitialized);
+      window.ethereum?.removeListener("accountsChanged", onAccountsChanged);
+      window.ethereum?.removeListener("connect", onConnect);
+      window.ethereum?.removeListener("disconnect", onDisconnect);
+      sdk.removeListener(EventType.SERVICE_STATUS, onServiceStatus);
+    };
+  }, [sdk]);
 
   // if (connecting) return <div></div>;
 
