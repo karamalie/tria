@@ -11,7 +11,6 @@ interface LoginButtonsProps {
 const LoginButtons = ({ connect }: LoginButtonsProps) => {
   const [, setLoginState] = useRecoilState(LoginAtom);
   const [isHovering, setIsHovering] = useState(false);
-  const { connecting } = useSDK();
 
   const signIn = () => {
     setLoginState("input");
@@ -64,7 +63,6 @@ const LoginButtons = ({ connect }: LoginButtonsProps) => {
       <div className="relative z-10 flex flex-col sm:flex-row gap-4">
         <button
           onClick={connect}
-          disabled={connecting}
           className="hover:bg-neutral-900 w-full flex items-center justify-center px-4 py-2 rounded-lg border border-neutral-700 text-white"
         >
           <div className="flex justify-center mr-2 items-center">

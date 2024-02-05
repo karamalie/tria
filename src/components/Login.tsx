@@ -5,6 +5,7 @@ import { AccountsAtom, LoginAtom } from "@/recoil";
 import LoginInput from "./LoginInput";
 import { Transition } from "react-transition-group";
 import { useSDK } from "@metamask/sdk-react";
+import { EventType, ServiceStatus } from "@metamask/sdk-communication-layer";
 const DotLottiePlayer = dynamic(
   () => import("@dotlottie/react-player").then((mod) => mod.DotLottiePlayer),
   { ssr: false }
@@ -69,15 +70,19 @@ const LoginPage = () => {
 
   const connect = async () => {
     try {
-      const accounts = (await sdk?.connect()) as string[];
-
-      setAccounts(accounts);
+      console.log("connecting");
+      sdk
+        ?.connect()
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+      // console.log(accounts);
+      // setAccounts(accounts);
     } catch (err) {
       console.warn(`failed to connect..`, err);
     }
   };
 
-  if (connecting) return <div></div>;
+  // if (connecting) return <div></div>;
 
   return (
     <div className="flex items-center justify-center min-h-screen  px-4 sm:px-6 lg:px-8 ">

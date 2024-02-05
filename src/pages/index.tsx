@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const host =
     typeof window !== "undefined" ? window.location.href : "defaultHost";
-
+  const { sdk } = useSDK();
   const sdkOptions = {
     logging: { developerMode: true },
     checkInstallationImmediately: false,
